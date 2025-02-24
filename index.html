@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="flex items-center justify-between p-4 bg-white shadow-md">
+        <a href="/" class="text-2xl font-bold text-blue-600">News Demo</a>
+        <form action="/search" method="GET" class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+            <input 
+                type="search" 
+                name="q" 
+                placeholder="Enter a news topic" 
+                value="{{ .SearchKey }}" 
+                class="px-4 py-2 w-64 focus:outline-none"
+                autofocus
+            >
+        </form>
+        <a href="https://github.com/freshman-tech/news" 
+           class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
+            View on Github
+        </a>
+    </header>
+    <main class="p-6">
+        <section class="container mx-auto p-4">
+            <div class="mb-4 p-4 bg-white shadow rounded-lg">
+                {{ if .Results.TotalResults }}
+                    {{ if (gt .Results.TotalResults 0) }}
+                        <p class="text-gray-700">About <strong>{{ .Results.TotalResults }}</strong> results were found.</p>
+                    {{ else if (ne .SearchKey "") }}
+                        <p class="text-red-500">No results found for your query: <strong>{{ .SearchKey }}</strong>.</p>
+                    {{ end }}
+                {{ end }}
+            </div>
+            <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {{ range .Results.Articles }}
+                <li class="bg-white shadow-lg rounded-lg overflow-hidden p-4 flex flex-col md:flex-row items-start">
+                    <div class="flex-1">
+                        <a target="_blank" rel="noreferrer noopener" href="{{.URL}}" class="text-blue-600 hover:underline">
+                            <h3 class="text-lg font-semibold">{{.Title}}</h3>
+                        </a>
+                        <p class="text-gray-700 mt-2">{{ .Description }}</p>
+                        <div class="text-sm text-gray-500 mt-4">
+                            <p class="font-medium">{{ .Source.Name }}</p>
+                            <time class="block">{{ .PublishedAt }}</time>
+                        </div>
+                    </div>
+                    <img class="w-full md:w-32 h-32 object-cover rounded-lg ml-4" src="{{ .URLToImage }}" alt="Article Image">
+                </li>
+                {{ end }}
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
