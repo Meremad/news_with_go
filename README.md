@@ -40,7 +40,6 @@ This project is based on the [news-demo-starter-files](https://github.com/Freshm
 ## Project Structure
 ```
 news_with_go/
-├── assets/            # Static files (CSS, JS, images)
 ├── index.html         # HTML template for rendering results
 ├── main.go            # Main Go application
 ├── go.mod             # Go module file
