@@ -31,6 +31,7 @@ This project is based on the [news-demo-starter-files](https://github.com/Freshm
    ```sh
    go run main.go -apikey=YOUR_NEWSAPI_KEY
    ```
+   The API key is passed using the `flag` package in Go, allowing it to be provided as a command-line argument.
 4. Open your browser and visit:
    ```sh
    http://localhost:3000
@@ -61,3 +62,4 @@ Then run the application as:
 ```sh
 API_KEY=$NEWSAPI_KEY go run main.go
 ```
+
