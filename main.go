@@ -123,9 +123,6 @@ func main() {
 		log.Fatal("apiKey must be sad show must go on!!!")
 	}
 
-	// команда для запуска программы и перадачи ключа
-	// go run main.go -apikey=3872832747d84fdb8433f0220e0d4bd1
-
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"
